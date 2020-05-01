@@ -6,13 +6,20 @@ const logger = require('morgan');
 
 const dotenv = require('dotenv');
 
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog'); //Import routes for "catalog" area of site
 
+var compression = require('compression');
+
+var helmet = require('helmet');
+
+
 const app = express();
 dotenv.config({ path: '.env' });
-
+app.use(compression()); //Compress all routes
+app.use(helmet());
 
 //mongodb
 const mongoose = require('mongoose');
